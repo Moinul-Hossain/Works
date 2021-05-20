@@ -1,0 +1,39 @@
+<div align="center">
+<table width="90%">
+ <caption>
+  <div align="left">
+   <%= link_to 'Create New Client', new_client_path %>
+  </div>
+  <h2>All Clients</h2>
+ </caption>
+ 
+  <tr>
+    <th>Name</th>
+    <th>Contact Name</th>
+	<th>Contact Email</th>
+    <th>Contact Phone</th>
+	<th>Facebook Email</th>
+    <th>Facebook Account</th>
+	<th></th>
+  </tr>
+ 
+  <% @clients.each do |client| %>
+    <tr>
+      <td><%= client.name %></td>
+      <td><%= client.contact_name %></td>
+	  <td><a href="mailto:<%= client.contact_email %>"><%= client.contact_email %></a></td>
+      <td><%= client.contact_phone %></td>
+	  <td><%= client.facebook_email %></td>
+      <td><%= client.facebook_account %></td>
+	  <td>
+	   <%= link_to 'View', client_path(client) %>
+	   |
+	   <%= link_to 'Edit', edit_client_path(client) %>
+	   |
+	   <%= link_to 'Delete', client_path(client),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
+	  </td>
+    </tr>
+  <% end %>
+</table>
+</div>
