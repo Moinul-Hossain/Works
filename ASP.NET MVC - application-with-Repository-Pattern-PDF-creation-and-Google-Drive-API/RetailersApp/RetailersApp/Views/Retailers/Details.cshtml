@@ -1,0 +1,61 @@
+﻿@model RetailersApp.Models.Retailer
+
+@{
+    ViewBag.Title = "Retailer Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Retailer_Name)</h4>
+    <hr />
+    
+        <dl class="dl-horizontal">           
+
+            <dt>
+                <b>Retailer Code</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Retailer_Code)
+            </dd>
+
+            <dt>
+                <b>Retailer Name</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Retailer_Name)
+            </dd>
+
+            <dt>
+                <b>Location</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Retailer_Location)
+            </dd>
+
+            <dt>
+                <b>Image</b>
+            </dt>
+
+            <dd>
+                
+                @{
+                    string img = "";
+                    if (Model.image_url != null)
+                    { img = Model.image_url.ToString(); }
+                    else
+                    { img = "image-not-available.jpg"; }
+                }
+                <img src="~/Images/@img" height="150" width="150" />
+            </dd>
+
+        </dl>
+    
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Retailer_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

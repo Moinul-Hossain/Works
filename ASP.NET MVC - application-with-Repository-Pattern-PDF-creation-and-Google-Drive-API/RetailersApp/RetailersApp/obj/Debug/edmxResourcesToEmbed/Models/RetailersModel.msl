@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RetailDBModelStoreContainer" CdmEntityContainer="RetailDBEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="RetailDBModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+          <ScalarProperty Name="Retailer_ID" ColumnName="Retailer_ID" />
+          <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
+          <ScalarProperty Name="Department_Code" ColumnName="Department_Code" />
+          <ScalarProperty Name="image_url" ColumnName="image_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Retailers">
+      <EntityTypeMapping TypeName="RetailDBModel.Retailer">
+        <MappingFragment StoreEntitySet="Retailers">
+          <ScalarProperty Name="Retailer_ID" ColumnName="Retailer_ID" />
+          <ScalarProperty Name="Retailer_Code" ColumnName="Retailer_Code" />
+          <ScalarProperty Name="Retailer_Name" ColumnName="Retailer_Name" />
+          <ScalarProperty Name="Retailer_Location" ColumnName="Retailer_Location" />
+          <ScalarProperty Name="image_url" ColumnName="image_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RetailDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

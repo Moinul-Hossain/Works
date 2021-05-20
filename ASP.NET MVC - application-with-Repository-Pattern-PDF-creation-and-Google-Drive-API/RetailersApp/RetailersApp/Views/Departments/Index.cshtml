@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RetailersApp.Models.Department>
+
+@{
+    ViewBag.Title = "Departments";
+}
+
+<h2>Departments</h2>
+
+<p>
+    @Html.ActionLink("Create New Department", "Create") | @Html.ActionLink("Retailers", "../Retailers/Index") | @Html.ActionLink("Master Details GridView (LINQ)", "../Retailers/Report")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Department Name
+        </th>
+        <th>
+            Department Code
+        </th>
+        <th>
+            Retailer Name
+        </th>
+        <th>
+            Image
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department_Name)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Department_Code)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Retailer.Retailer_Name)
+        </td>
+        <td>
+            @{
+                //Html.DisplayFor(modelItem => item.image_url)
+            }
+
+            @{
+                string img = "";
+                if (item.image_url != null)
+                { img = item.image_url.ToString(); }
+                else
+                { img = "image-not-available.jpg"; }
+            }
+            <img src="~/Images/@img" height="50" width="50" />
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Department_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Department_ID }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.Department_ID })
+        </td>
+    </tr>
+    }
+
+</table>

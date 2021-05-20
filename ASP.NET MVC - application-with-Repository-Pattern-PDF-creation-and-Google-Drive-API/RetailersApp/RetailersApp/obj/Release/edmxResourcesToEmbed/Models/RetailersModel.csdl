@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RetailDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Department_ID" />
+    </Key>
+    <Property Name="Department_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Retailer_ID" Type="Int32" Nullable="false" />
+    <Property Name="Department_Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Department_Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="image_url" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Retailer" Relationship="Self.FK_Departments_Retailers" FromRole="Departments" ToRole="Retailers" />
+  </EntityType>
+  <EntityType Name="Retailer">
+    <Key>
+      <PropertyRef Name="Retailer_ID" />
+    </Key>
+    <Property Name="Retailer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Retailer_Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Retailer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Retailer_Location" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="image_url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Retailers" FromRole="Retailers" ToRole="Departments" />
+  </EntityType>
+  <Association Name="FK_Departments_Retailers">
+    <End Role="Retailers" Type="Self.Retailer" Multiplicity="1" />
+    <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Retailers">
+        <PropertyRef Name="Retailer_ID" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="Retailer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RetailDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Retailers" EntityType="Self.Retailer" />
+    <AssociationSet Name="FK_Departments_Retailers" Association="Self.FK_Departments_Retailers">
+      <End Role="Retailers" EntitySet="Retailers" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="RetailDBModel.sysdiagram" />
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

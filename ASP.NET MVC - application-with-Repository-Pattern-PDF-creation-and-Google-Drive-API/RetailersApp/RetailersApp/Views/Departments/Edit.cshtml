@@ -1,0 +1,106 @@
+﻿@model RetailersApp.DTO.DepartmentDto
+
+@{
+    ViewBag.Title = "Edit Department";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Departments", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Department</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.Hidden("Department_ID", Model.Department_ID)
+    @{
+        string imgUrl = "";
+        if (Model.image_url != null)
+        { imgUrl = Model.image_url.ToString().Trim(); }
+        else
+        { imgUrl = "image-not-available.jpg"; }
+    }
+    @Html.Hidden("image_url", imgUrl)
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Department Name</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Department_Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Department_Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            Department Code
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Department_Code, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Department_Code, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Retailer Name</label>
+        <div class="col-md-10">
+            @Html.DropDownList("Retailer_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Retailer_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Image</label>
+        <div class="col-md-10">
+            @{
+                string img = "";
+                if (Model.image_url != null)
+                { img = Model.image_url.ToString().Trim(); }
+                else
+                { img = "image-not-available.jpg"; }
+            }
+            <img id="imG" src="~/Images/@img" height="150" width="150" /><br /><br />
+            <input type="file" name="ImageFile" id="imgUploader" onchange="readURL(this);" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imG')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
