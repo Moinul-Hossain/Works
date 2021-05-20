@@ -1,0 +1,28 @@
+﻿'use strict';
+
+// Register `studentDetail` component, along with its associated controller and template
+angular.
+    module('studentCreate').
+    component('studentCreate', {
+        templateUrl: 'app/templates/student-create.html',
+        controller: ['$scope', '$http', '$location',
+            function StudentCreateController($scope, $http, $location) {                
+                $scope.Create = function ($http, $location) {
+                    //alert('{ student: [' + JSON.stringify($scope.student) + '] }');
+                    $http({                        
+                        method: 'POST',
+                        url: '/Student/Create/',
+                        datatype: "json", 
+                        data: 'Name=' + $scope.student.Name + '&Course=' + $scope.student.Course                        
+                    }).then(function (response) {                        
+                        //$scope.students.push(response.data);
+                        alert("Student has been created successfully!");
+                        $location.path('/students/' + response.data.student.id);
+                        }).error(function (data, status, header, config) {
+                            $scope.ResponseDetails = "Data: " + data + "<hr />status: " + status + "<hr />headers: " + header + "<hr />config: " + config;
+                            alert($scope.ResponseDetails);
+                        });
+                };
+            }
+        ]
+    });

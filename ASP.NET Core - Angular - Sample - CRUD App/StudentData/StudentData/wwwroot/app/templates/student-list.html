@@ -1,0 +1,38 @@
+﻿<h2>Students</h2>
+<div align="right" style="padding:5px;position:relative; top:-20px;"><a href="#!/students/create" class="btn btn-info">Create</a></div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        All Students
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Round</th>
+                    <th>Batch</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in $ctrl.students.students">
+                    <td>
+                        <a href="#!/students/{{student.id}}">
+                            {{student.name}}
+                        </a>
+                    </td>
+                    <td>{{student.course}}</td>
+                    <td>{{student.round}}</td>
+                    <td>{{student.batch}}</td>
+                    <td>
+                        <a href="#!/students/edit/{{student.id}}" class="btn btn-info">Edit</a>
+                        <!--a ng-click="$ctrl.Delete()" href="#!/students/delete/{{student.id}}" class="btn btn-danger">Delete</a-->
+                        <a href ng-click="$ctrl.Delete(student.id, student.name)" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

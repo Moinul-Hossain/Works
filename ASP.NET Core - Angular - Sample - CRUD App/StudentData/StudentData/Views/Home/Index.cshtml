@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts
+    {
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular/angular-route.min.js"></script>
+    <script src="~/app/app.module.js"></script>
+    <script src="~/app/app.config.js"></script>
+    <script src="~/app/student-list/student-list.module.js"></script>
+    <script src="~/app/student-list/student-list.component.js"></script>
+    <script src="~/app/student-detail/student-detail.module.js"></script>
+    <script src="~/app/student-detail/student-detail.component.js"></script>
+    <script src="~/app/student-delete/student-delete.module.js"></script>
+    <script src="~/app/student-delete/student-delete.component.js"></script>
+    <script src="~/app/student-create/student-create.module.js"></script>
+    <script src="~/app/student-create/student-create.component.js"></script>
+    <script src="~/app/student-edit/student-edit.module.js"></script>
+    <script src="~/app/student-edit/student-edit.component.js"></script>
+}
+
+<div ng-view></div>

@@ -1,0 +1,41 @@
+﻿<h2>{{$ctrl.student.student.name}}</h2>
+<div align="right" style="padding:5px;position:relative; top:-20px;"><a href="http://localhost:51249/#!/" class="btn btn-default">Back to List</a> <a href="#!/students/create" class="btn btn-info">Create</a> <a href="#!/students/edit/{{$ctrl.student.student.id}}" class="btn btn-info">Edit</a> <a href ng-click="$ctrl.Delete($ctrl.student.student.id, $ctrl.student.student.name)" class="btn btn-danger">Delete</a> </div>
+<div class="panel panel-default">    
+    <div class="panel-heading">
+        Records
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>
+                        {{$ctrl.student.student.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <td>{{$ctrl.student.student.course}}</td>
+                </tr>
+                <tr>
+                    <th>Round</th>
+                    <td>{{$ctrl.student.student.round}}</td>
+                </tr>
+                <tr>
+                    <th>Batch</th>
+                    <td>{{$ctrl.student.student.batch}}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>{{$ctrl.student.student.address}}</td>
+                </tr>
+                <tr ng-switch="$ctrl.student.student.status">
+                    <th>Status</th>
+                    <td ng-switch-when="true">Active</td>
+                    <td ng-switch-when="false"><span style="background-color:yellow">Withdrawn</span></td>
+                </tr>
+            </tbody>            
+        </table>
+    </div>
+    
+</div>

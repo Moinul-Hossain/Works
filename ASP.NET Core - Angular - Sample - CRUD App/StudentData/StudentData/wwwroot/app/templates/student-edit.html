@@ -1,0 +1,84 @@
+﻿<h2>{{$ctrl.student.name}}</h2>
+<div align="right" style="padding:5px;position:relative; top:-20px;"><a href="http://localhost:51249/#!/" class="btn btn-default">Back to List</a></div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Edit
+    </div>
+
+    <div class="panel-body">
+        <form ng-submit="$ctrl.Edit()">      
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>
+                        <input name="id" type="hidden" ng-model="$ctrl.student.id" ng-value="$ctrl.student.id" />
+                        <input type="text" class="form-control" ng-model="$ctrl.student.name" ng-value="$ctrl.student.name" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <td>
+                        <select ng-model="$ctrl.student.course" class="form-control">
+                            <option value="ESAD" ng-selected="ESAD">ESAD</option>                            
+                            <option value="WPSI">WPSI</option>                                
+                            <option value="J2EE">J2EE</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Round</th>
+                    <td>
+                        <input min="30" type="number"
+                               class="form-control" value="30" ng-model="$ctrl.student.round" ng-value="$ctrl.student.round" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Batch</th>
+                    <td>
+                        <select ng-model="$ctrl.student.batch" class="form-control">
+                            <option value="Morning">Morning</option>
+                            <option value="Evening">Evening</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>
+                        <textarea rows="7" class="form-control" ng-model="$ctrl.student.address" ng-value="$ctrl.student.address"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <td>
+                        <!--select-- ng-model="$ctrl.student.status" class="form-control"-->
+                            <!--<any ng-if="$ctrl.student.status==1">
+                            <option value="1" selected>Active</option>
+                            </any>
+                            <any ng-else>
+                            <option value="1">Active</option>
+                            </any>
+                            <any ng-if="$ctrl.student.status==0">
+                            <option value="0" selected>Withdrawn</option>
+                            </any>
+                            <any ng-else>
+                            <option value="0">Withdrawn</option>
+                            </any>-->
+                            <!--option value="true">Active</option>
+                            <option value="false">Withdrawn</option>
+                        </select-->
+                        <input type="checkbox" ng-model="$ctrl.student.status" /> Active?
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <button class="btn btn-info" type="submit">
+                            Save
+                        </button>
+                    </td>
+                </tr>
+            </tbody>            
+        </table>
+        </form>
+    </div>    
+</div>
