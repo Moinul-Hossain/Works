@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html ng-app="feedbackApp">
+<head>
+    <title>Student Feedback Systems 1.0</title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <script src="~/js/feedbackApp.js"></script>
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="~/css/feedback.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Student Feedback (Online)</h2><hr/>
+    <div ng-controller="FeedbackController as feedbackList">
+        <p
+            <span>Issues: <b>{{feedbackList.issues.length}}</b></span> <span>Pending: <b>{{feedbackList.remaining()}}</b></span>
+            <span>{{feedbackList.message}}</span>
+        </p>
+        <p>
+            <a href="" ng-click="feedbackList.archive()">Archive</a> | <a href="" ng-click="feedbackList.delete()">Delete</a> | <a href="" ng-click="feedbackList.cancelEdit()">Cancel Edit</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Sl.</th>
+                <th>Issue</th>
+                <th width="15%">Status</th>
+            </tr>
+            <tr ng-repeat="feedback in feedbackList.issues">
+                <td align="center">
+    <input type="checkbox" ng-model="feedback.done" ng-change="feedbackList.changeStatus($index, feedback.done)" />
+                    <!--/label-->
+</td>
+                <td ng-init="sl=$index+1">                
+                    {{sl}}</td>
+                <td>
+
+                    <span class="done-{{feedback.done}}"><a href ng-click="feedbackList.editIssue($index)">{{feedback.text}}</a></span>
+
+                </td>
+                <td>
+                    <span class="resolved-{{feedback.done}}" id="span{{$index}}" ng-if="feedback.done">(Resolved)</span>
+                    <span class="resolved-{{feedback.done}}" id="span{{$index}}" ng-if="!feedback.done">Not Resolved</span>
+                </td>
+            </tr>
+            <tr>
+                
+                <td colspan="4">
+                    <form ng-submit="feedbackList.saveIssue()">
+                        <textarea class="form-control {{feedbackList.mode==='edit'?'edit':'edit-cancelled'}}" rows="2" ng-model="feedbackList.issueText"
+                                  placeholder="Add new issue here or edit any of above ..."></textarea>                        
+                        <input class="form-control btn-primary save" type="submit" value="Save">
+                    </form>
+                </td>
+            </tr>
+        </table>    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿* {
+   margin: 5px;
+}
+label, input [type=checkbox] {
+    margin:0; padding:0;
+}
+hr {
+    margin-left: 0;
+    margin-right:0;
+}
+ul {
+list-style-type: none;
+}
+.done-false a {
+    color: #ff0000;
+}
+    .done-true {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.done-true a {
+    color: #3acc34;
+}
+
+.resolved-true {
+    color: #3acc34;
+}
+
+.resolved-false {
+    background-color: yellow;
+}
+
+.save{margin-top: 5px;}
+
+.edit{background-color: #eee;}
+.edit-cancelled {
+    background-color: #fff;
+}
