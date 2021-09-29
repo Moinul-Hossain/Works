@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Calculator</title>
+
+<style>
+*{font-family:Helvetica, arial, sans-serif;}
+
+#display{
+	border: 1px solid #bbb;
+	font-family:Helvetica, arial, sans-serif;
+	font-size:2em;
+	padding:5px;
+	width: 310px;
+	height: 40px;
+	text-align: right;
+}
+
+#container
+{
+	margin-top: 50px;
+	clear:both;
+	text-align: center;
+	padding-bottom: 100px;
+}
+
+#calcApp
+{
+	background-color:#eee;
+	display: block;
+	margin:auto;
+	width: 335px;
+	border: 1px solid #bbb;
+	padding: 15px;
+	padding-top: 25px;
+}
+
+button
+{
+	font-size:2em;
+	height: 65px;
+	margin: 11px;
+	border:0;
+	background-color:#bbb;
+}
+button:hover{background-color:#ccc;}
+button:active{background-color:#ddd;}
+
+button.digit{width: 61px;}
+button.operator{width: 50px;}
+button.clear-btn{width:310px; height: 50px; padding: 5px;  }
+
+hr.sep{width: 320px;}
+#opsFlag {text-align: right; height:40px; font-size:25px; clear:both; float:right; width:100%; margin-right: 20px;}
+</style>
+
+</head>
+<body>
+<h1>JS Calculator</h1><hr/>
+<div id="container">
+
+	<div id="calcApp">		
+		<form>
+		<div id="opsFlag"></div>
+		<div>
+		<input type="text" id="display" value="0" readonly />
+		<hr class="sep" />
+		
+		<button type="button" onmouseover="this.style.backgroundColor='yellow'"  class="digit" onclick="addDigit(7)">7</button>
+		<button type="button"  class="digit" onclick="addDigit(8)">8</button>
+		<button type="button"  class="digit" onclick="addDigit(9)">9</button>
+		<button type="button"  class="operator" onclick="setOps('/')">&#247;</button>
+		
+		<button type="button"  class="digit" onclick="addDigit(4)">4</button>
+		<button type="button"  class="digit" onclick="addDigit(5)">5</button>
+		<button type="button"  class="digit" onclick="addDigit(6)">6</button>
+		<button type="button"  class="operator" onclick="setOps('*')">&times;</button>
+		
+		<button type="button"  class="digit" onclick="addDigit(1)">1</button>
+		<button type="button"  class="digit" onclick="addDigit(2)">2</button>
+		<button type="button"  class="digit" onclick="addDigit(3)">3</button>
+		<button type="button"  class="operator" onclick="setOps('-')">-</button>
+		
+		<button type="button"  class="digit" onclick="addDigit(0)">0</button>
+		<button type="button"  class="digit" onclick="addDecimalPoint()">.</button>
+		<button type="button"  class="digit" onclick="setOps('+')">+</button>
+		<button type="button"  class="operator" onclick="calculate()">=</button>
+		
+		<button type="button"  class="clear-btn" onclick="clearDisplay()" id="clearBtn" >C</button>
+		</div>
+		</form>
+		
+	</div>
+	
+</div>
+
+<script>
+
+// declaring global variables
+var operand1, operand2, operator;
+
+function addDigit(num)
+{	
+	var display = document.getElementById('display');
+
+	if(display.value.length > 15) 
+	{
+		return false;
+	}
+	
+	display.value += num;	// Concatenation
+	
+	if(display.value.toString().indexOf('.') >= -1 && num > 0)
+	{
+		display.value = parseFloat(display.value);
+	}
+	else if(display.value.toString().indexOf('.') == -1 && num == 0) 
+	{
+		display.value = parseFloat(display.value);
+	}
+	
+	if(operator == undefined) 
+	{
+		operand1 = parseFloat(display.value);
+	}
+	else if(operator != undefined && operand2 == undefined)
+	{		
+		display.value = num;
+		
+		operand2 = parseFloat(display.value);
+	}
+	else
+	{
+		operand2 = parseFloat(display.value);
+	}
+}
+
+function clearDisplay()
+{
+	var display = document.getElementById('display');
+	
+	display.value = 0;
+	
+	document.getElementById('opsFlag').innerText = '';
+	
+	operand1=operand2=operator=undefined;
+}
+
+function setOps(ops)
+{
+	if(operand1 == undefined) return false;
+	
+	var flag = document.getElementById('opsFlag');
+	
+	if(ops == '*')
+	{
+		flag.innerHTML = '&times;';
+	}
+	else if (ops == '/') 
+	{
+		flag.innerHTML = '&#247;';
+	}
+	else 
+	{
+		flag.innerText = ops;
+	}
+	
+	operator = ops;
+}
+
+function addDecimalPoint()
+{
+	var display = document.getElementById('display');
+	
+	if(display.value.toString().indexOf('.') == -1) 
+	{
+		display.value = display.value.toString(0.0) + '.';
+	}
+}
+
+function calculate()
+{
+	if(operand1 == undefined && operand2 == undefined && operator == undefined ) return false;
+	
+	var display = document.getElementById('display');
+		
+	var result;
+			
+			
+	switch (operator)
+	{
+		default:
+			//
+		break;
+						
+		case '+':						
+			result = plus ();						
+		break;
+					
+		case '-':
+			result = minus ();					
+		break;					
+					
+		case '*':
+			result = multiply ();						
+		break;					
+					
+		case '/':
+			result = divide ();						
+		break;					
+	}
+				
+	display.value = operand1 = result;
+	operand2 = undefined;
+}
+		
+function plus()
+{
+	var result = operand1 + operand2;
+	return result;
+}
+		
+		
+function minus()
+{		
+	var result = operand1 - operand2;			
+	return result;
+}
+		
+		
+function multiply()
+{
+	var result = operand1 * operand2;			
+	return result;
+}
+		
+function divide()
+{
+	var result = operand1 / operand2;			
+	return result;
+}
+
+</script>
+</body>
+</html>
