@@ -29,7 +29,7 @@ include_once "nav.php";
 <img src="images/linkedin.png">
 </td>
 <td>
-<a href="https://linkedin.com/in/emoinul">https://linkedin.com/in/emoinul</a>
+<a href="https://linkedin.com/in/emoinul" target="_blank">https://linkedin.com/in/emoinul</a>
 </td>
 </tr>
 <tr>
@@ -37,7 +37,7 @@ include_once "nav.php";
 <img src="images/github.png">
 </td>
 <td>
-<a href="https://github.com/moinul-hossain/works">https://github.com/moinul-hossain/works</a>
+<a href="https://github.com/moinul-hossain/works" target="_blank">https://github.com/moinul-hossain/works</a>
 </td>
 </tr>
 </table>
