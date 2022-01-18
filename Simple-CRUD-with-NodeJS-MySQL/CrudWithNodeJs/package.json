@@ -1,0 +1,15 @@
+{
+  "name": "crudwithnodejs",
+  "version": "1.0.0",
+  "description": "CRUD example with MySQL and Authentication using Passport.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Md. Moinul Hossain",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.0.x",
+    "mysql": "^2.18.1"
+  }
+}
