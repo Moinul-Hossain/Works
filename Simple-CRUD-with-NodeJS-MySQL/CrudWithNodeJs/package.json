@@ -9,7 +9,7 @@
   "author": "Md. Moinul Hossain",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.0.x",
+    "express": "^4.18.x",
     "mysql": "^2.18.1"
   }
 }
